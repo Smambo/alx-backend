@@ -72,7 +72,62 @@ Implement a method named `get_page` that takes two integer arguments `page` with
 * You have to use this [CSV file](./Popular_Baby_Names.csv) (same as the one presented at the top of the project)
 * Use `assert` to verify that both arguments are integers greater than 0.
 * Use `index_range` to find the correct indexes to paginate the dataset correctly and return the appropriate page of the dataset (i.e. the correct list of rows).
-* If the input arguments are out of range for the dataset, an empty list should be returned.
+* If the input arguments are out of range for the dataset, an empty list should be returned.<br>
+```
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ wc -l Popular_Baby_Names.csv
+19419 Popular_Baby_Names.csv
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ head Popular_Baby_Names.csv
+Year of Birth,Gender,Ethnicity,Child's First Name,Count,Rank
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Olivia,172,1
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Chloe,112,2
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Sophia,104,3
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Emma,99,4
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Emily,99,4
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Mia,79,5
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Charlotte,59,6
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Sarah,57,7
+2016,FEMALE,ASIAN AND PACIFIC ISLANDER,Isabella,56,8
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ cat 1-main.py
+#!/usr/bin/env python3
+"""
+Main file
+"""
+
+Server = __import__('1-simple_pagination').Server
+
+server = Server()
+
+try:
+    should_err = server.get_page(-10, 2)
+except AssertionError:
+    print("AssertionError raised with negative values")
+
+try:
+    should_err = server.get_page(0, 0)
+except AssertionError:
+    print("AssertionError raised with 0")
+
+try:
+    should_err = server.get_page(2, 'Bob')
+except AssertionError:
+    print("AssertionError raised when page and/or page_size are not ints")
+
+
+print(server.get_page(1, 3))
+print(server.get_page(3, 2))
+print(server.get_page(3000, 100))
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ ./1-main.py
+AssertionError raised with negative values
+AssertionError raised with 0
+AssertionError raised when page and/or page_size are not ints
+[['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Olivia', '172', '1'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Chloe', '112', '2'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Sophia', '104', '3']]
+[['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Emily', '99', '4'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Mia', '79', '5']]
+[]
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+```
 
 [2. Hypermedia pagination](./2-hypermedia_pagination.py)<br>
 Replicate code from the previous task.
@@ -87,7 +142,35 @@ Implement a `get_hyper` method that takes the same arguments (and defaults) as `
 * `total_pages`: the total number of pages in the dataset as an integer
 Make sure to reuse `get_page` in your implementation.
 
-You can use the `math` module if necessary.
+You can use the `math` module if necessary.<br>
+```
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ cat 2-main.py
+#!/usr/bin/env python3
+"""
+Main file
+"""
+
+Server = __import__('2-hypermedia_pagination').Server
+
+server = Server()
+
+print(server.get_hyper(1, 2))
+print("---")
+print(server.get_hyper(2, 2))
+print("---")
+print(server.get_hyper(100, 3))
+print("---")
+print(server.get_hyper(3000, 100))
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ ./2-main.py
+{'page_size': 2, 'page': 1, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Olivia', '172', '1'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Chloe', '112', '2']], 'next_page': 2, 'prev_page': None, 'total_pages': 9709}
+---
+{'page_size': 2, 'page': 2, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Sophia', '104', '3'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Emma', '99', '4']], 'next_page': 3, 'prev_page': 1, 'total_pages': 9709}
+---
+{'page_size': 3, 'page': 100, 'data': [['2016', 'FEMALE', 'BLACK NON HISPANIC', 'Londyn', '14', '39'], ['2016', 'FEMALE', 'BLACK NON HISPANIC', 'Amirah', '14', '39'], ['2016', 'FEMALE', 'BLACK NON HISPANIC', 'McKenzie', '14', '39']], 'next_page': 101, 'prev_page': 99, 'total_pages': 6473}
+---
+{'page_size': 0, 'page': 3000, 'data': [], 'next_page': None, 'prev_page': 2999, 'total_pages': 195}
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+```
 
 [3. Deletion-resilient hypermedia pagination](./3-hypermedia_del_pagination.py)<br>
 The goal here is that if between two queries, certain rows are removed from the dataset, the user does not miss items from dataset when changing page.
@@ -152,4 +235,54 @@ Implement a `get_hyper_index` method with two integer arguments: `index` with a 
 
 * Use `assert` to verify that `index` is in a valid range.
 * If the user queries index 0, `page_size` 10, they will get rows indexed 0 to 9 included.
-* If they request the next index (10) with `page_size` 10, but rows 3, 6 and 7 were deleted, the user should still receive rows indexed 10 to 19 included.
+* If they request the next index (10) with `page_size` 10, but rows 3, 6 and 7 were deleted, the user should still receive rows indexed 10 to 19 included.<br>
+```
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ cat 3-main.py
+#!/usr/bin/env python3
+"""
+Main file
+"""
+
+Server = __import__('3-hypermedia_del_pagination').Server
+
+server = Server()
+
+server.indexed_dataset()
+
+try:
+    server.get_hyper_index(300000, 100)
+except AssertionError:
+    print("AssertionError raised when out of range")
+
+
+index = 3
+page_size = 2
+
+print("Nb items: {}".format(len(server._Server__indexed_dataset)))
+
+# 1- request first index
+res = server.get_hyper_index(index, page_size)
+print(res)
+
+# 2- request next index
+print(server.get_hyper_index(res.get('next_index'), page_size))
+
+# 3- remove the first index
+del server._Server__indexed_dataset[res.get('index')]
+print("Nb items: {}".format(len(server._Server__indexed_dataset)))
+
+# 4- request again the initial index -> the first data retreives is not the same as the first request
+print(server.get_hyper_index(index, page_size))
+
+# 5- request again initial next index -> same data page as the request 2-
+print(server.get_hyper_index(res.get('next_index'), page_size))
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$ ./3-main.py
+AssertionError raised when out of range
+Nb items: 19418
+{'index': 3, 'next_index': 5, 'page_size': 2, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Emma', '99', '4'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Emily', '99', '4']]}
+{'index': 5, 'next_index': 7, 'page_size': 2, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Mia', '79', '5'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Charlotte', '59', '6']]}
+Nb items: 19417
+{'index': 3, 'next_index': 6, 'page_size': 2, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Emily', '99', '4'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Mia', '79', '5']]}
+{'index': 5, 'next_index': 7, 'page_size': 2, 'data': [['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Mia', '79', '5'], ['2016', 'FEMALE', 'ASIAN AND PACIFIC ISLANDER', 'Charlotte', '59', '6']]}
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x00-pagination$
+```
