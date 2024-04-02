@@ -11,6 +11,7 @@ In computing, a <b>cache</b> is a hardware or software component that stores dat
 * What limits a caching system have <br><br>
 
 All classes must inherit from `BaseCaching` defined below:<br>
+
 ```
 #!/usr/bin/python3
 """ BaseCaching module
@@ -44,7 +45,8 @@ class BaseCaching():
         """ Get an item by key
         """
         raise NotImplementedError("get must be implemented in your cache class")
-``` <br><br>
+```
+
 ### Tasks:
 [0. Basic dictionary](./0-basic_cache.py)<br>
 Create a class `BasicCache` that inherits from `BaseCaching` and is a caching system:
