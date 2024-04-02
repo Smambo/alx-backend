@@ -58,7 +58,52 @@ Create a class `BasicCache` that inherits from `BaseCaching` and is a caching sy
   * If `key` or `item` is `None`, this method should not do anything.
 * `def get(self, key):`
   * Must return the value in `self.cache_data` linked to `key`.
-  * If `key` is `None` or if the `key` doesn’t exist in `self.cache_data`, return `None`.
+  * If `key` is `None` or if the `key` doesn’t exist in `self.cache_data`, return `None`. <br>
+```
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$ cat 0-main.py
+#!/usr/bin/python3
+""" 0-main """
+BasicCache = __import__('0-basic_cache').BasicCache
+
+my_cache = BasicCache()
+my_cache.print_cache()
+my_cache.put("A", "Hello")
+my_cache.put("B", "World")
+my_cache.put("C", "Holberton")
+my_cache.print_cache()
+print(my_cache.get("A"))
+print(my_cache.get("B"))
+print(my_cache.get("C"))
+print(my_cache.get("D"))
+my_cache.print_cache()
+my_cache.put("D", "School")
+my_cache.put("E", "Battery")
+my_cache.put("A", "Street")
+my_cache.print_cache()
+print(my_cache.get("A"))
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$ ./0-main.py
+Current cache:
+Current cache:
+A: Hello
+B: World
+C: Holberton
+Hello
+World
+Holberton
+None
+Current cache:
+A: Hello
+B: World
+C: Holberton
+Current cache:
+A: Street
+B: World
+C: Holberton
+D: School
+E: Battery
+Street
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$
+```
 
 [1. FIFO caching](./1-fifo_cache.py)<br>
 Create a class `FIFOCache` that inherits from `BaseCaching` and is a caching system:
