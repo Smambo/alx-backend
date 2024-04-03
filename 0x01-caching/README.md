@@ -242,7 +242,98 @@ Create a class `LRUCache` that inherits from `BaseCaching` and is a caching syst
     * you must print `DISCARD:` with the `key` discarded and following by a new line
 * `def get(self, key):`
   * Must return the value in `self.cache_data` linked to `key`.
-  * If `key` is `None` or if the `key` doesn’t exist in `self.cache_data`, return `None`.
+  * If `key` is `None` or if the `key` doesn’t exist in `self.cache_data`, return `None`. <br>
+```
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$ cat 3-main.py
+#!/usr/bin/python3
+""" 3-main """
+LRUCache = __import__('3-lru_cache').LRUCache
+
+my_cache = LRUCache()
+my_cache.put("A", "Hello")
+my_cache.put("B", "World")
+my_cache.put("C", "Holberton")
+my_cache.put("D", "School")
+my_cache.print_cache()
+print(my_cache.get("B"))
+my_cache.put("E", "Battery")
+my_cache.print_cache()
+my_cache.put("C", "Street")
+my_cache.print_cache()
+print(my_cache.get("A"))
+print(my_cache.get("B"))
+print(my_cache.get("C"))
+my_cache.put("F", "Mission")
+my_cache.print_cache()
+my_cache.put("G", "San Francisco")
+my_cache.print_cache()
+my_cache.put("H", "H")
+my_cache.print_cache()
+my_cache.put("I", "I")
+my_cache.print_cache()
+my_cache.put("J", "J")
+my_cache.print_cache()
+my_cache.put("K", "K")
+my_cache.print_cache()
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$ ./3-main.py
+Current cache:
+A: Hello
+B: World
+C: Holberton
+D: School
+World
+DISCARD: A
+Current cache:
+B: World
+C: Holberton
+D: School
+E: Battery
+Current cache:
+B: World
+C: Street
+D: School
+E: Battery
+None
+World
+Street
+DISCARD: D
+Current cache:
+B: World
+C: Street
+E: Battery
+F: Mission
+DISCARD: E
+Current cache:
+B: World
+C: Street
+F: Mission
+G: San Francisco
+DISCARD: B
+Current cache:
+C: Street
+F: Mission
+G: San Francisco
+H: H
+DISCARD: C
+Current cache:
+F: Mission
+G: San Francisco
+H: H
+I: I
+DISCARD: F
+Current cache:
+G: San Francisco
+H: H
+I: I
+J: J
+DISCARD: G
+Current cache:
+H: H
+I: I
+J: J
+K: K
+simam@DESKTOP-5QTVNRV:~/alx-backend/0x01-caching$
+```
 
 [4. MRU Caching](./4-mru_cache.py)<br>
 Create a class `MRUCache` that inherits from `BaseCaching` and is a caching system:
