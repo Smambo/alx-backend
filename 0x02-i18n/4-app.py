@@ -36,7 +36,7 @@ def get_locale() -> str:
 @app.route('/')
 def get_index() -> str:
     """Function returns the index page"""
-    return (render_template('3-index.html'))
+    return (render_template('4-index.html'))
 
 
 if __name__ == '__main__':
