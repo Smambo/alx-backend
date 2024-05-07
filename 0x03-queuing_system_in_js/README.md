@@ -210,6 +210,36 @@ Using `hgetall`, display the object stored in Redis. It should return the follow
 
 * Use callbacks for any of the operation, we will look at async operations later
 
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 4-redis_advanced_op.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "4-redis_advanced_op.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 4-redis_advanced_op.js`
+Redis client connected to the server
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+{
+  Portland: '50',
+  Seattle: '80',
+  'New York': '20',
+  Bogota: '20',
+  Cali: '40',
+  Paris: '2'
+}
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
 [5. Node Redis client publisher and subscriber](./5-subscriber.js)<br>
 In a file named `5-subscriber.js`, create a redis client:
 
