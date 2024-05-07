@@ -77,6 +77,49 @@ Using Babel and ES6, write a script named `0-redis_client.js`. It should connect
 
 * To import the library, you need to use the keyword `import`
 
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# ps aux | grep redis-server
+root     21240  0.0  0.0  13140   932 pts/2    S+   16:36   0:00 grep --color=auto redis-server
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 0-redis_client.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "0-redis_client.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 0-redis_client.js`
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# redis-6.0.10/src/redis-server > /dev/null 2>&1 &
+[1] 21500
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# ps aux | grep redis-server
+root     21500  0.1  0.0  61320  5060 pts/2    Sl   17:17   0:00 redis-6.0.10/src/redis-server *:6379
+root     21506  0.0  0.0  13140  1072 pts/2    S+   17:17   0:00 grep --color=auto redis-server
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 0-redis_client.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "0-redis_client.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 0-redis_client.js`
+Redis client connected to the server
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
 [2. Node Redis client and basic operations](./1-redis_op.js)<br>
 In a file `1-redis_op.js`, copy the code you previously wrote (`0-redis_client.js`).
 
