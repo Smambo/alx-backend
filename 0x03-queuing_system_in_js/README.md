@@ -272,6 +272,57 @@ publishMessage("Holberton Student #3 starts course", 400);
 * You only need one Redis server to execute the program
 * You will need to have two node processes to run each script at the same time
 
+<b>Terminal 1:</b>
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 5-subscriber.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "5-subscriber.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 5-subscriber.js`
+Redis client connected to the server
+```
+
+<b>Terminal 2:</b>
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 5-publisher.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "5-publisher.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 5-publisher.js`
+Redis client connected to the server
+About to send Holberton Student #1 starts course
+About to send Holberton Student #2 starts course
+About to send KILL_SERVER
+About to send Holberton Student #3 starts course
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
+<b>And in the same time in Terminal 1:</b>
+
+```
+Redis client connected to the server
+Holberton Student #1 starts course
+Holberton Student #2 starts course
+KILL_SERVER
+Holberton Student #3 starts course
+[nodemon] clean exit - waiting for changes before restart
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
 [6. Create the Job creator](./6-job_creator.js)<br>
 In a file named `6-job_creator.js`:
 
