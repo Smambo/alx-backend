@@ -142,6 +142,26 @@ At the end of the file, call:
 <b>Requirements:</b>
 
 * Use callbacks for any of the operation, we will look at async operations later
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 1-redis_op.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "1-redis_op.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 1-redis_op.js`
+Redis client connected to the server
+School
+Reply: OK
+100
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
 [3. Node Redis client and async operations](./2-redis_op_async.js)<br>
 In a file `2-redis_op_async.js`, let’s copy the code from the previous exercise (`1-redis_op.js`)
 
