@@ -169,6 +169,25 @@ Using `promisify`, modify the function `displaySchoolValue` to use ES6 `async / 
 
 Same result as `1-redis_op.js`
 
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 2-redis_op_async.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "2-redis_op_async.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 2-redis_op_async.js`
+Redis client connected to the server
+School
+Reply: OK
+100
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
 [4. Node Redis client and advanced operations](./4-redis_advanced_op.js)<br>
 In a file named `4-redis_advanced_op.js`, let’s use the client to store a hash value
 
