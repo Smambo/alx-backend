@@ -1,4 +1,6 @@
 ## Queuing System in JS
+![image](https://github.com/Smambo/alx-backend/assets/113464914/e58da519-9a48-44aa-99b4-407cce0f3d92)
+
 ### Learning Objectives:
 * How to run a Redis server on your machine
 * How to run simple operations with the Redis client
