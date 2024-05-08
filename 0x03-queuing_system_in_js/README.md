@@ -491,6 +491,68 @@ Create a queue with `Kue` that will proceed job of the queue `push_notification_
 * You muse use `Kue` to set up the queue
 * Executing the jobs list should log to the console the following:
 
+<b>Terminal 2:</b>
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 7-job_processor.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "7-job_processor.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 7-job_processor.js`
+Sending notification to 4153518743, with message: This is the code 4321 to verify your account
+Sending notification to 4153538781, with message: This is the code 4562 to verify your account
+Sending notification to 4153118782, with message: This is the code 4321 to verify your account
+Sending notification to 4153718781, with message: This is the code 4562 to verify your account
+Sending notification to 4159518782, with message: This is the code 4321 to verify your account
+Sending notification to 4158718781, with message: This is the code 4562 to verify your account
+Sending notification to 4153818782, with message: This is the code 4321 to verify your account
+Sending notification to 4154318781, with message: This is the code 4562 to verify your account
+Sending notification to 4151218782, with message: This is the code 4321 to verify your account
+^Croot@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
+<b>And in the same time in terminal 1:</b>
+
+```
+...
+Notification job 26 0% complete
+Notification job 27 0% complete
+Notification job 26 failed: Phone number 4153518780 is blacklisted
+Notification job 27 failed: Phone number 4153518781 is blacklisted
+Notification job 28 0% complete
+Notification job 29 0% complete
+Notification job 28 50% complete
+Notification job 28 completed
+Notification job 29 50% complete
+Notification job 29 completed
+Notification job 30 0% complete
+Notification job 31 0% complete
+Notification job 30 50% complete
+Notification job 31 50% complete
+Notification job 30 completed
+Notification job 31 completed
+Notification job 32 0% complete
+Notification job 33 0% complete
+Notification job 32 50% complete
+Notification job 33 50% complete
+Notification job 32 completed
+Notification job 33 completed
+Notification job 34 0% complete
+Notification job 35 0% complete
+Notification job 34 50% complete
+Notification job 35 50% complete
+Notification job 34 completed
+Notification job 35 completed
+Notification job 36 0% complete
+Notification job 36 50% complete
+Notification job 36 completed
+```
+
 [10. Writing the job creation function](./8-job.js)<br>
 In a file named `8-job.js`, create a function named `createPushNotificationsJobs`:
 
@@ -501,6 +563,35 @@ In a file named `8-job.js`, create a function named `createPushNotificationsJobs
 * When a job is complete, it should log to the console `Notification job JOB_ID completed`
 * When a job is failed, it should log to the console `Notification job JOB_ID failed: ERROR`
 * When a job is making progress, it should log to the console `Notification job JOB_ID PERCENT% complete`
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# cat 8-job-main.js
+import kue from 'kue';
+
+import createPushNotificationsJobs from './8-job.js';
+
+const queue = kue.createQueue();
+
+const list = [
+    {
+        phoneNumber: '4153518780',
+    message: 'This is the code 1234 to verify your account'
+    }
+];
+createPushNotificationsJobs(list, queue);
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 8-job-main.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "8-job-main.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 8-job-main.js`
+Notification job created: 37
+```
 
 [11. Writing the test for job creation](./8-job.test.js)<br>
 Now that you created a job creator, let’s add tests:
