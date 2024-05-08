@@ -25,7 +25,7 @@
 Don't forget to run `$ npm install` when you have `package.json`
 
 ### Tasks:
-[0. Install a redis instance](./README.md)<br>
+### [0. Install a redis instance](./README.md)<br>
 Download, extract, and compile the latest stable Redis version (higher than 5.0.7 - [https://redis.io/downloads/](./https://redis.io/downloads/)):
 
 ```
@@ -67,7 +67,8 @@ Copy the `dump.rdb` from the `redis-5.0.7` directory into the root of the Queuin
 Requirements:
 
 * Running `get Holberton` in the client, should return `School`
-[1. Node Redis Client](./0-redis_client.js)<br>
+
+### [1. Node Redis Client](./0-redis_client.js)<br>
 Install [node_redis](./https://github.com/redis/node-redis) using npm
 
 Using Babel and ES6, write a script named `0-redis_client.js`. It should connect to the Redis server running on your machine:
@@ -122,7 +123,7 @@ Redis client connected to the server
 root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[2. Node Redis client and basic operations](./1-redis_op.js)<br>
+### [2. Node Redis client and basic operations](./1-redis_op.js)<br>
 In a file `1-redis_op.js`, copy the code you previously wrote (`0-redis_client.js`).
 
 Add two functions:
@@ -164,7 +165,7 @@ Reply: OK
 root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[3. Node Redis client and async operations](./2-redis_op_async.js)<br>
+### [3. Node Redis client and async operations](./2-redis_op_async.js)<br>
 In a file `2-redis_op_async.js`, let’s copy the code from the previous exercise (`1-redis_op.js`)
 
 Using `promisify`, modify the function `displaySchoolValue` to use ES6 `async / await`
@@ -190,7 +191,7 @@ Reply: OK
 root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[4. Node Redis client and advanced operations](./4-redis_advanced_op.js)<br>
+### [4. Node Redis client and advanced operations](./4-redis_advanced_op.js)<br>
 In a file named `4-redis_advanced_op.js`, let’s use the client to store a hash value
 
 ### Create Hash:
@@ -242,7 +243,7 @@ Reply: 1
 root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[5. Node Redis client publisher and subscriber](./5-subscriber.js)<br>
+### [5. Node Redis client publisher and subscriber](./5-subscriber.js)<br>
 In a file named `5-subscriber.js`, create a redis client:
 
 * On connect, it should log the message `Redis client connected to the server`
@@ -325,7 +326,7 @@ Holberton Student #3 starts course
 root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[6. Create the Job creator](./6-job_creator.js)<br>
+### [6. Create the Job creator](./6-job_creator.js)<br>
 In a file named `6-job_creator.js`:
 
 * Create a queue with `Kue`
@@ -363,7 +364,7 @@ Nothing else will happen - to process the job, go to the next task!
 
 If you execute multiple time this file, you will see the `JOB ID` increasing - it means you are storing new job to process…
 
-[7. Create the Job processor](./6-job_processor.js)<br>
+### [7. Create the Job processor](./6-job_processor.js)<br>
 In a file named `6-job_processor.js`:
 
 * Create a queue with `Kue`
@@ -379,7 +380,7 @@ In a file named `6-job_processor.js`:
 * You will need to have two node processes to run each script at the same time
 * You muse use `Kue` to set up the queue
 
-[8. Track progress and errors with Kue: Create the Job creator](./7-job_creator.js)<br>
+### [8. Track progress and errors with Kue: Create the Job creator](./7-job_creator.js)<br>
 In a file named `7-job_creator.js`:
 
 Create an array `jobs` with the following data inside:
@@ -469,7 +470,7 @@ Notification job created: 14
 ^Croot@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
 ```
 
-[9. Track progress and errors with Kue: Create the Job processor](./7-job_processor.js)<br>
+### [9. Track progress and errors with Kue: Create the Job processor](./7-job_processor.js)<br>
 In a file named `7-job_processor.js`:
 
 Create an array that will contain the blacklisted phone numbers. Add in it `4153518780` and `4153518781` - these 2 numbers will be blacklisted by our jobs processor.
@@ -553,7 +554,7 @@ Notification job 36 50% complete
 Notification job 36 completed
 ```
 
-[10. Writing the job creation function](./8-job.js)<br>
+### [10. Writing the job creation function](./8-job.js)<br>
 In a file named `8-job.js`, create a function named `createPushNotificationsJobs`:
 
 * It takes into argument `jobs` (array of objects), and `queue` (`Kue` queue)
@@ -593,7 +594,7 @@ root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 8-job-main
 Notification job created: 37
 ```
 
-[11. Writing the test for job creation](./8-job.test.js)<br>
+### [11. Writing the test for job creation](./8-job.test.js)<br>
 Now that you created a job creator, let’s add tests:
 
 * Import the function `createPushNotificationsJobs`
@@ -607,7 +608,7 @@ Now that you created a job creator, let’s add tests:
 * Make sure to enter the test mode without processing the jobs before executing the tests
 * Make sure to clear the queue and exit the test mode after executing the tests
 
-[12. In stock?](./9-stock.js)<br>
+### [12. In stock?](./9-stock.js)<br>
 ### Data
 Create an array `listProducts` containing the list of the following products:
 
