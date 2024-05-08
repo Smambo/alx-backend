@@ -343,6 +343,26 @@ In a file named `6-job_creator.js`:
 * When the job is completed, log to the console `Notification job completed`
 * When the job is failing, log to the console `Notification job failed`
 
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 6-job_creator.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "6-job_creator.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 6-job_creator.js`
+Notification job created: 1
+^C
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
+
+Nothing else will happen - to process the job, go to the next task!
+
+If you execute multiple time this file, you will see the `JOB ID` increasing - it means you are storing new job to process…
+
 [7. Create the Job processor](./6-job_processor.js)<br>
 In a file named `6-job_processor.js`:
 
@@ -422,6 +442,32 @@ After this array created:
   * On the job completion, log to the console `Notification job JOB_ID completed`
   * On the job failure, log to the console `Notification job JOB_ID failed: ERROR`
   * On the job progress, log to the console `Notification job JOB_ID PERCENTAGE% complete`
+
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# vi 7-job_creator.js
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm run dev 7-job_creator.js
+
+> queuing_system_in_js@1.0.0 dev /alx-backend/0x03-queuing_system_in_js
+> nodemon --exec babel-node --presets @babel/preset-env "7-job_creator.js"
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 7-job_creator.js`
+Notification job created: 4
+Notification job created: 5
+Notification job created: 6
+Notification job created: 7
+Notification job created: 8
+Notification job created: 9
+Notification job created: 10
+Notification job created: 11
+Notification job created: 12
+Notification job created: 13
+Notification job created: 14
+^Croot@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js#
+```
 
 [9. Track progress and errors with Kue: Create the Job processor](./7-job_processor.js)<br>
 In a file named `7-job_processor.js`:
