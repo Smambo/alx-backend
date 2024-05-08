@@ -608,6 +608,31 @@ Now that you created a job creator, let’s add tests:
 * Make sure to enter the test mode without processing the jobs before executing the tests
 * Make sure to clear the queue and exit the test mode after executing the tests
 
+```
+root@088c4f11a28c:/alx-backend/0x03-queuing_system_in_js# npm test 8-job.test.js
+
+> queuing_system_in_js@1.0.0 test /alx-backend/0x03-queuing_system_in_js
+> mocha --require @babel/register --exit "8-job.test.js"
+
+
+
+  createPushNotificationsJobs
+    ✓ displays an error message if jobs is not an array
+Notification job created: 38
+Notification job created: 39
+    ✓ adds jobs to the queue with the correct type (199ms)
+Notification job 38 25% complete
+    ✓ registers the progress event handler for a job
+Notification job 38 failed: Failed to send
+    ✓ registers the failed event handler for a job
+Notification job 38 completed
+    ✓ registers the complete event handler for a job
+
+
+  5 passing (404ms)
+
+```
+
 ### [12. In stock?](./9-stock.js)<br>
 ### Data
 Create an array `listProducts` containing the list of the following products:
